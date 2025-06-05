@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICF-SL Technical Proposal</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         @page {
             size: A4 portrait;
             margin: 1in 1in 1in 1in;
         }
         
         body {
-            font-family: 'Calibri', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             font-size: 11pt;
             line-height: 1.2;
             margin: 0;
             padding: 0;
-            color: #000;
-            background: white;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         
         .page {
@@ -189,6 +195,10 @@
             background: #f8fafc;
         }
         
+        tr:hover {
+            background: #e3f2fd;
+        }
+        
         .personnel-card {
             background: #f8fafc;
             border: 1px solid #e5e7eb;
@@ -237,6 +247,67 @@
             margin: 5px 0;
         }
         
+        /* New Enhanced Table Styles */
+        .detailed-table {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        
+        .table-header {
+            background: #1e3a8a;
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .cost-breakdown {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .breakdown-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #1e3a8a;
+        }
+        
+        .breakdown-section h4 {
+            color: #1e3a8a;
+            margin-bottom: 10px;
+        }
+        
+        .calculation {
+            font-family: 'Courier New', monospace;
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-size: 9pt;
+        }
+        
+        .assumptions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            margin: 15px 0;
+        }
+        
+        .assumptions h4 {
+            color: #1976d2;
+            margin-bottom: 10px;
+        }
+        
         ul {
             margin: 8px 0;
             padding-left: 20px;
@@ -283,6 +354,10 @@
         }
         
         @media print {
+            body {
+                background: white;
+            }
+            
             .page {
                 box-shadow: none;
                 margin: 0;
@@ -372,7 +447,7 @@
                 <div class="personnel-name">Mohamed Sillah Kanu</div>
                 <div class="personnel-title">Digitalization Lead Specialist – Data Systems</div>
                 <div class="personnel-details">
-                    <strong>Experience:</strong> 5 years in mobile data collection systems and anlaysis<br>
+                    <strong>Experience:</strong> 5 years in mobile data collection systems and analysis<br>
                     <strong>Education:</strong> MS in Data Science, MS Statistics, BSc Statistics, BSc Software Engineering<br>
                     <strong>Contact:</strong> mohamed.kanu@informaticsconsultancyfirm.com | +1-240-889-6759
                 </div>
@@ -402,7 +477,7 @@
                 <div class="personnel-name">Randwulf A.J. Tucker</div>
                 <div class="personnel-title">Database & Backend Systems Engineer</div>
                 <div class="personnel-details">
-                    <strong>Experience:</strong>2 years of experience in developing health database systems and cloud infrastructur<br>
+                    <strong>Experience:</strong>2 years of experience in developing health database systems and cloud infrastructure<br>
                     <strong>Education:</strong>BSc Information System<br>
                     <strong>Contact:</strong> randwuld.tucker@informaticsconsultancyfirm.com | +232-78-221-556
                 </div>
@@ -450,7 +525,7 @@
                     <tr>
                         <td>Digitalization Lead Specialist – Data Systems</td>
                         <td>Mohamed Sillah Kanu</td>
-                        <td>30</td>
+                        <td>60</td>
                         <td>1. Lead planning and implementation of digital health architecture<br>
                             2. Develop and implement digital data strategies<br>
                             3. Supervise development and rollout of tools<br>
@@ -484,16 +559,38 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Data Specialist</td>
-                        <td>Ibrahim Turay</td>
-                        <td>18</td>
-                        <td>Dashboard creation, data analysis, reporting</td>
+                        <td>Database & Backend Systems Engineer</td>
+                        <td>Randwulf A.J. Tucker</td>
+                        <td>30</td>
+                        <td>
+                            1. Design, deploy, and maintain relational/NoSQL databases<br>
+                            2. Implement secure data validation, encryption, and access protocols<br>               
+                            3. Manage automated data synchronization processes<br>                           
+                            4. Perform data cleaning, deduplication, and backups
+                        
+                        </td>
                     </tr>
                     <tr>
-                        <td>System Administrator</td>
-                        <td>Aminata Kargbo</td>
-                        <td>12</td>
-                        <td>Infrastructure setup, device configuration, maintenance</td>
+                        <td>Data Visualization & Reporting Specialist</td>
+                        <td>Morlai Alimamy Kargbo</td>
+                        <td>30</td>
+                        <td>
+                            1. Create interactive dashboards using Streamlit python<br>     
+                            2. Automate routine analytics and reporting workflows<br>   
+                            3. Design visuals tailored to different user needs<br>                    
+                            4. Support data storytelling and policy briefs
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>User Support & Systems Training Coordinator</td>
+                        <td>Zainab Kamara</td>
+                        <td>30</td>
+                        <td>
+                            1. Train users and provide continuous support<br>
+                            2. Develop user manuals, training guides, and SOPs<br>  
+                            3. Track and resolve user feedback and issues<br>
+                            4. Lead refresher sessions and local capacity-building
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -518,7 +615,7 @@
             <h4>1. Logistics Tracking Form (Clappia App)</h4>
             <ul>
                 <li>Real-time tracking of ITN stock distribution and delivery status</li>
-                <li>Barcode/QR code scanner integration for inventory verification</li>
+                <li>QR code scanner integration for inventory verification</li>
                 <li>GPS auto-capture for delivery point validation</li>
                 <li>Offline data entry with background sync upon connectivity</li>
                 <li>Alerts for low stock levels and delivery delays</li>
@@ -533,7 +630,6 @@
                 <li>GPS auto-capture for school location verification</li>
                 <li>Offline functionality with automatic sync when online</li>
                 <li>Individual distribution records linked to enrollment database</li>
-            
                 <li>Automated timestamp and GPS logging</li>
                 <li>Push notifications for distribution milestones</li>
             </ul>
@@ -563,7 +659,7 @@
             
             <h3>Regular Communication Schedule</h3>
             <ul>
-                <li><strong>Dailly Progress Updates:</strong> Every successful submissions and Dashboard update after every 24 hours</li>
+                <li><strong>Daily Progress Updates:</strong> Every successful submissions and Dashboard update after every 24 hours</li>
                 <li><strong>Daily Check-ins:</strong> During implementation period (June 30 - July 4)</li>
                 <li><strong>Emergency Contact:</strong> 24/7 technical support hotline during distribution period</li>
                 <li><strong>Milestone Reviews:</strong> Formal review meetings at each deliverable checkpoint</li>
@@ -592,59 +688,230 @@
             <h1>VOLUME II: COST PROPOSAL</h1>
             
             <div class="cost-highlight">
-                <div class="cost-amount">$62,500 USD</div>
-                <div class="cost-label">Total Project Cost</div>
+                <div class="cost-amount">$23,202.52 USD</div>
+                <div class="cost-label">Total Digitalization Cost</div>
             </div>
             
-            <h2>Detailed Budget Breakdown</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Local Currency (SLL)</th>
-                        <th>USD</th>
-                        <th>Percentage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Personnel Costs</td>
-                        <td>450,000,000</td>
-                        <td>$22,500</td>
-                        <td>36%</td>
-                    </tr>
-                    <tr>
-                        <td>Technical Development</td>
-                        <td>320,000,000</td>
-                        <td>$16,000</td>
-                        <td>25.6%</td>
-                    </tr>
-                    <tr>
-                        <td>Training & Support</td>
-                        <td>160,000,000</td>
-                        <td>$8,000</td>
-                        <td>12.8%</td>
-                    </tr>
-                    <tr>
-                        <td>Infrastructure & Equipment</td>
-                        <td>140,000,000</td>
-                        <td>$7,000</td>
-                        <td>11.2%</td>
-                    </tr>
-                    <tr>
-                        <td>Travel & Transportation</td>
-                        <td>100,000,000</td>
-                        <td>$5,000</td>
-                        <td>8%</td>
-                    </tr>
-                    <tr>
-                        <td>Other Direct Costs</td>
-                        <td>80,000,000</td>
-                        <td>$4,000</td>
-                        <td>6.4%</td>
-                    </tr>
-                </tbody>
-            </table>
+            <!-- Enhanced Detailed Cost Breakdown Table -->
+            <div class="detailed-table">
+                <div class="table-header">Complete Cost Breakdown by Category</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Description</th>
+                            <th>Quantity</th>
+                            <th>Frequency/Days</th>
+                            <th>Unit Cost (NLe)</th>
+                            <th>Total Cost (NLe)</th>
+                            <th>Total Cost (USD)</th>
+                            <th>% of Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Digital Devices</strong></td>
+                            <td>462</td>
+                            <td>1</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>$0.00</td>
+                            <td>0.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SIM Card Purchase</strong></td>
+                            <td>462</td>
+                            <td>1</td>
+                            <td>20.00</td>
+                            <td>9,240.00</td>
+                            <td>$420.55</td>
+                            <td>1.8%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mobile Data</strong></td>
+                            <td>462</td>
+                            <td>3</td>
+                            <td>100.00</td>
+                            <td>138,600.00</td>
+                            <td>$6,308.32</td>
+                            <td>27.2%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ITN SBD Vouchers</strong></td>
+                            <td>1,126</td>
+                            <td>1</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>$0.00</td>
+                            <td>0.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Training Vouchers</strong></td>
+                            <td>113</td>
+                            <td>1</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>$0.00</td>
+                            <td>0.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Technical Assistance (ICF-SL)</strong></td>
+                            <td>1</td>
+                            <td>60</td>
+                            <td>5,285.71</td>
+                            <td>317,142.60</td>
+                            <td>$14,434.60</td>
+                            <td>62.2%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vehicle Hire</strong></td>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>$0.00</td>
+                            <td>0.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Motorbike Hire</strong></td>
+                            <td>2</td>
+                            <td>4</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>$0.00</td>
+                            <td>0.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fuel for Officers</strong></td>
+                            <td>319</td>
+                            <td>1</td>
+                            <td>0.00</td>
+                            <td>0.00</td>
+                            <td>$0.00</td>
+                            <td>0.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DSA to ICF Officers</strong></td>
+                            <td>4</td>
+                            <td>16</td>
+                            <td>700.00</td>
+                            <td>44,800.00</td>
+                            <td>$2,039.05</td>
+                            <td>8.8%</td>
+                        </tr>
+                        <tr style="background: #e3f2fd; font-weight: bold; color: #1e3a8a;">
+                            <td><strong>TOTAL DIGITALIZATION</strong></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td><strong>509,782.60</strong></td>
+                            <td><strong>$23,202.52</strong></td>
+                            <td><strong>100.0%</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="cost-breakdown">
+                <h3 style="color: #1e3a8a; margin-bottom: 20px;">🏢 ICF-SL Technical Approach Integration</h3>
+                
+                <div class="breakdown-section">
+                    <h4>Platform Integration Strategy</h4>
+                    <p><strong>Primary Platform:</strong> Clappia (No-code mobile app builder)</p>
+                    <ul>
+                        <li>Offline-capable mobile data collection</li>
+                        <li>Real-time GPS tracking and barcode scanning</li>
+                        <li>Automated notifications via Slack, SMS, WhatsApp</li>
+                    </ul>
+                    <p><strong>Analytics Platform:</strong> Streamlit (Python-based dashboards)</p>
+                    <ul>
+                        <li>Real-time data visualization</li>
+                        <li>Advanced analytics and reporting</li>
+                        <li>PostgreSQL database integration</li>
+                    </ul>
+                </div>
+                
+                <div class="breakdown-section">
+                    <h4>Three Core Applications Development</h4>
+                    <div class="calculation">
+                        1. Logistics Tracking Form (Stock & Delivery Management)
+                        2. ITN Distribution Tracking (Student Demographics & Distribution)
+                        3. Supervision & QA Form (Quality Assurance & Monitoring)
+                    </div>
+                </div>
+            </div>
+
+            <div class="cost-breakdown">
+                <h3 style="color: #1e3a8a; margin-bottom: 20px;">📊 Detailed Cost Analysis</h3>
+                
+                <div class="breakdown-section">
+                    <h4>1. Technical Assistance (62.2% - $14,434.60)</h4>
+                    <div class="calculation">
+                        Daily Rate: NLe 5,285.71 × 60 days = NLe 317,142.60
+                        Exchange Rate: NLe 317,142.60 ÷ 21.97 = $14,434.60
+                    </div>
+                    <p><strong>Scope:</strong> Complete digitalization software development by ICF-SL including:</p>
+                    <ul>
+                        <li>Cloud-based database development</li>
+                        <li>Mobile application creation</li>
+                        <li>Training platform setup</li>
+                        <li>Monitoring & evaluation systems</li>
+                        <li>Reporting & analytics dashboards</li>
+                    </ul>
+                </div>
+                
+                <div class="breakdown-section">
+                    <h4>2. Mobile Data & Communications (27.2% - $6,308.32)</h4>
+                    <div class="calculation">
+                        462 devices × 3 months × NLe 100/month = NLe 138,600
+                        Total: NLe 138,600 ÷ 21.97 = $6,308.32
+                    </div>
+                    <p><strong>Coverage:</strong> 3-month data plan for all 462 devices including configuration, setup, registration, and distribution support.</p>
+                </div>
+                
+                <div class="breakdown-section">
+                    <h4>3. Daily Subsistence Allowance (8.8% - $2,039.05)</h4>
+                    <div class="calculation">
+                        4 ICF Officers × 16 days × NLe 700/day = NLe 44,800
+                        Total: NLe 44,800 ÷ 21.97 = $2,039.05
+                    </div>
+                    <p><strong>Personnel:</strong> 2 ICT4D Officers per district × 2 districts × 16 days field work</p>
+                </div>
+                
+                <div class="breakdown-section">
+                    <h4>4. SIM Card Purchase (1.8% - $420.55)</h4>
+                    <div class="calculation">
+                        462 SIM cards × NLe 20/card = NLe 9,240
+                        Total: NLe 9,240 ÷ 21.97 = $420.55
+                    </div>
+                    <p><strong>Purpose:</strong> Individual SIM cards for each digital device to ensure connectivity.</p>
+                </div>
+            </div>
+            
+            <div class="assumptions">
+                <h4>💡 ICF-SL Value Proposition</h4>
+                <ul>
+                    <li><strong>Proven Track Record:</strong> 10+ health technology projects completed</li>
+                    <li><strong>Malaria Expertise:</strong> Current support to NMCP digitalization initiatives</li>
+                    <li><strong>Local Knowledge:</strong> Deep understanding of Sierra Leone context</li>
+                    <li><strong>Technical Excellence:</strong> Expertise in Clappia, Streamlit, and health informatics</li>
+                    <li><strong>Cost Efficiency:</strong> Delivered 62.9% cost savings vs. original budget</li>
+                    <li><strong>24/7 Support:</strong> Comprehensive technical support throughout implementation</li>
+                    <li><strong>Team Credentials:</strong> MS Data Science, PhD Infectious Diseases, BSc IT/Software Engineering</li>
+                </ul>
+            </div>
+            
+            <div class="assumptions">
+                <h4>📋 Technical Implementation Details</h4>
+                <ul>
+                    <li><strong>Exchange Rate:</strong> 1 USD = 21.97 NLe (New Leone)</li>
+                    <li><strong>Development Timeline:</strong> 60 days technical assistance + 4 days field implementation</li>
+                    <li><strong>Personnel Deployment:</strong> 2 ICT4D Officers per district × 2 districts</li>
+                    <li><strong>Mobile Platform:</strong> Clappia cloud infrastructure with enterprise security</li>
+                    <li><strong>Dashboard Platform:</strong> Python Streamlit with PostgreSQL database</li>
+                    <li><strong>Data Architecture:</strong> RESTful APIs connecting mobile apps to analytics dashboard</li>
+                    <li><strong>Communication Schedule:</strong> Daily updates during implementation, 24/7 emergency support</li>
+                </ul>
+            </div>
             
             <h2>Payment Schedule</h2>
             <table>
@@ -660,19 +927,19 @@
                     <tr>
                         <td>App Development Plan</td>
                         <td>30%</td>
-                        <td>$18,750</td>
+                        <td>$6,960.76</td>
                         <td>June 9, 2025</td>
                     </tr>
                     <tr>
                         <td>Complete System Development</td>
                         <td>50%</td>
-                        <td>$31,250</td>
+                        <td>$11,601.26</td>
                         <td>June 11, 2025</td>
                     </tr>
                     <tr>
                         <td>Post-Campaign Analysis</td>
                         <td>20%</td>
-                        <td>$12,500</td>
+                        <td>$4,640.50</td>
                         <td>July 14, 2025</td>
                     </tr>
                 </tbody>
@@ -682,9 +949,179 @@
 
     <div class="page section-break">
         <div class="content">
+            <h1>Project Timeline & Implementation Plan</h1>
+            
+            <h2>Implementation Timeline</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Activity</th>
+                        <th>Duration</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Deliverable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="3">Phase 1: Planning & Design</td>
+                        <td>Requirements gathering and system design</td>
+                        <td>3 days</td>
+                        <td>June 7, 2025</td>
+                        <td>June 9, 2025</td>
+                        <td>App Development Plan</td>
+                    </tr>
+                    <tr>
+                        <td>Stakeholder consultation and approval</td>
+                        <td>1 day</td>
+                        <td>June 9, 2025</td>
+                        <td>June 9, 2025</td>
+                        <td>Approved Design Document</td>
+                    </tr>
+                    <tr>
+                        <td>Development environment setup</td>
+                        <td>1 day</td>
+                        <td>June 10, 2025</td>
+                        <td>June 10, 2025</td>
+                        <td>Development Infrastructure</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">Phase 2: Development</td>
+                        <td>Core application development (Clappia)</td>
+                        <td>5 days</td>
+                        <td>June 10, 2025</td>
+                        <td>June 14, 2025</td>
+                        <td>Mobile Applications</td>
+                    </tr>
+                    <tr>
+                        <td>Dashboard development (Streamlit)</td>
+                        <td>3 days</td>
+                        <td>June 12, 2025</td>
+                        <td>June 14, 2025</td>
+                        <td>Analytics Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>Database integration and API development</td>
+                        <td>2 days</td>
+                        <td>June 13, 2025</td>
+                        <td>June 14, 2025</td>
+                        <td>Backend Systems</td>
+                    </tr>
+                    <tr>
+                        <td>System testing and quality assurance</td>
+                        <td>1 day</td>
+                        <td>June 15, 2025</td>
+                        <td>June 15, 2025</td>
+                        <td>Complete System</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Phase 3: Training</td>
+                        <td>Training of Trainers (ToT)</td>
+                        <td>1 day</td>
+                        <td>June 16, 2025</td>
+                        <td>June 16, 2025</td>
+                        <td>Trained Master Trainers</td>
+                    </tr>
+                    <tr>
+                        <td>Field staff training rollout</td>
+                        <td>14 days</td>
+                        <td>June 17, 2025</td>
+                        <td>June 30, 2025</td>
+                        <td>Trained Field Teams</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Phase 4: Implementation</td>
+                        <td>Live deployment and monitoring</td>
+                        <td>4 days</td>
+                        <td>July 1, 2025</td>
+                        <td>July 4, 2025</td>
+                        <td>Active System</td>
+                    </tr>
+                    <tr>
+                        <td>Real-time support and troubleshooting</td>
+                        <td>4 days</td>
+                        <td>July 1, 2025</td>
+                        <td>July 4, 2025</td>
+                        <td>Operational Support</td>
+                    </tr>
+                    <tr>
+                        <td>Phase 5: Analysis</td>
+                        <td>Post-campaign data analysis and reporting</td>
+                        <td>10 days</td>
+                        <td>July 5, 2025</td>
+                        <td>July 14, 2025</td>
+                        <td>Final Analysis Report</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Risk Management Strategy</h2>
+            
+            <h3>Technical Risks</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Risk</th>
+                        <th>Probability</th>
+                        <th>Impact</th>
+                        <th>Mitigation Strategy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Internet connectivity issues</td>
+                        <td>Medium</td>
+                        <td>High</td>
+                        <td>Offline-first app design with background sync</td>
+                    </tr>
+                    <tr>
+                        <td>Device hardware failures</td>
+                        <td>Low</td>
+                        <td>Medium</td>
+                        <td>Backup device pool and rapid replacement protocol</td>
+                    </tr>
+                    <tr>
+                        <td>User training gaps</td>
+                        <td>Medium</td>
+                        <td>Medium</td>
+                        <td>Comprehensive training materials and 24/7 support</td>
+                    </tr>
+                    <tr>
+                        <td>Data security concerns</td>
+                        <td>Low</td>
+                        <td>High</td>
+                        <td>Enterprise-grade encryption and secure cloud hosting</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>Quality Assurance Framework</h2>
+            
+            <h3>Testing Protocols</h3>
+            <ul>
+                <li><strong>Unit Testing:</strong> Individual component functionality verification</li>
+                <li><strong>Integration Testing:</strong> End-to-end system workflow validation</li>
+                <li><strong>User Acceptance Testing:</strong> Field testing with actual users</li>
+                <li><strong>Performance Testing:</strong> Load testing with expected user volumes</li>
+                <li><strong>Security Testing:</strong> Vulnerability assessment and penetration testing</li>
+            </ul>
+            
+            <h3>Monitoring and Evaluation</h3>
+            <ul>
+                <li><strong>Real-time Dashboards:</strong> Live system performance monitoring</li>
+                <li><strong>Data Quality Checks:</strong> Automated validation and error reporting</li>
+                <li><strong>User Feedback Systems:</strong> Continuous improvement mechanisms</li>
+                <li><strong>Performance Metrics:</strong> Key indicators tracking and reporting</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page section-break">
+        <div class="content">
             <h1>Conclusion</h1>
             
-            <p>ICF-SL brings proven expertise in health informatics using modern no-code and Python-based solutions, deep understanding of Sierra Leone's operational context, and commitment to delivering high-quality, sustainable technology solutions.</p>
+            <p>ICF-SL brings proven expertise in health informatics using Clappia data collection tool and Python-based solutions, deep understanding of Sierra Leone's operational context, and commitment to delivering high-quality, sustainable technology solutions.</p>
             
             <p>Our comprehensive approach using Clappia for mobile data collection and Streamlit for real-time analytics ensures successful implementation of the school-based ITN distribution data collection system while building local capacity for future campaigns.</p>
             
@@ -696,21 +1133,26 @@
                 <div class="contact-grid">
                     <div class="contact-item">
                         <div class="contact-label">Primary Contact</div>
-                        <div class="contact-value">Dr. Mohamed Kamara<br>Project Director</div>
+                        <div class="contact-value">Mohamed Sillah Kanu<br>Digitalization Lead Specialist</div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-label">Phone</div>
-                        <div class="contact-value">+232-76-123-456</div>
+                        <div class="contact-value">+1-240-889-6759</div>
                     </div>
                     <div class="contact-item">
                         <div class="contact-label">Email</div>
-                        <div class="contact-value">mkamara@icf-sl.com</div>
+                        <div class="contact-value">mohamed.kanu@informaticsconsultancyfirm.com</div>
                     </div>
                 </div>
                 
                 <div class="contact-item" style="margin: 20px auto; max-width: 300px;">
-                    <div class="contact-label">Address</div>
-                    <div class="contact-value">15 Wilkinson Road<br>Freetown, Sierra Leone</div>
+                    <div class="contact-label">Secondary Contact</div>
+                    <div class="contact-value">Dr. Ousman Oumou Diallo<br>Director of Health Informatics<br>odiallo@informaticsconsultancyfirm.com<br>+1-224-345-0012</div>
+                </div>
+                
+                <div class="contact-item" style="margin: 20px auto; max-width: 400px;">
+                    <div class="contact-label">Company Address</div>
+                    <div class="contact-value">Informatics Consultancy Firm - Sierra Leone<br>15 Wilkinson Road<br>Freetown, Sierra Leone</div>
                 </div>
                 
                 <p style="margin-top: 30px; font-style: italic;">
@@ -719,5 +1161,3 @@
             </div>
         </div>
     </div>
-</body>
-</html>
