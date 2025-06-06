@@ -1,1000 +1,216 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ICF-SL Technical Proposal</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: #f8f9fa;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        
-        .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="30" cy="20" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="50" cy="15" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="25" r="1" fill="rgba(255,255,255,0.06)"/><circle cx="90" cy="5" r="1" fill="rgba(255,255,255,0.09)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-            opacity: 0.3;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .header h2 {
-            font-size: 1.4em;
-            font-weight: 300;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .proposal-info {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .proposal-info div {
-            text-align: left;
-        }
-        
-        .proposal-info strong {
-            display: block;
-            font-size: 0.9em;
-            opacity: 0.9;
-            margin-bottom: 5px;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
-            margin-bottom: 50px;
-        }
-        
-        .section-title {
-            font-size: 2em;
-            color: #1e3c72;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #2a5298;
-            position: relative;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: #ffa726;
-        }
-        
-        .subsection {
-            margin: 30px 0;
-        }
-        
-        .subsection h3 {
-            color: #2a5298;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .subsection h3::before {
-            content: '▶';
-            color: #ffa726;
-            margin-right: 10px;
-            font-size: 0.8em;
-        }
-        
-        .mission-box {
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #2196f3;
-            margin: 20px 0;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .team-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .team-table th {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 15px;
-            font-weight: 600;
-            text-align: left;
-        }
-        
-        .team-table td {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            vertical-align: top;
-        }
-        
-        .team-table tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-        
-        .team-table tr:hover {
-            background: #e3f2fd;
-            transition: background 0.3s ease;
-        }
-        
-        .platform-card {
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 20px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .platform-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-        
-        .platform-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .platform-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-weight: bold;
-        }
-        
-        .feature-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .feature-list li {
-            padding: 8px 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .feature-list li::before {
-            content: '✓';
-            background: #4caf50;
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 12px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .cost-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .cost-table th {
-            background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
-            color: white;
-            padding: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        .cost-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            text-align: center;
-        }
-        
-        .cost-table .total-row {
-            background: #e8f5e8;
-            font-weight: bold;
-            font-size: 1.1em;
-        }
-        
-        .cost-breakdown {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        
-        .cost-item {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            border-left: 5px solid #ffa726;
-        }
-        
-        .cost-amount {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #2e7d32;
-            margin-bottom: 10px;
-        }
-        
-        .cost-percentage {
-            background: #ffa726;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            display: inline-block;
-        }
-        
-        .value-proposition {
-            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-        
-        .value-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .value-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 10px;
-        }
-        
-        .value-item::before {
-            content: '✓';
-            background: #9c27b0;
-            color: white;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-        }
-        
-        .timeline-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .timeline-table th {
-            background: linear-gradient(135deg, #e65100 0%, #ff9800 100%);
-            color: white;
-            padding: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        .timeline-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            text-align: center;
-        }
-        
-        .phase-badge {
-            background: #ff9800;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-        
-        .risk-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        
-        .risk-table th {
-            background: linear-gradient(135deg, #d32f2f 0%, #f44336 100%);
-            color: white;
-            padding: 15px;
-            font-weight: 600;
-            text-align: center;
-        }
-        
-        .risk-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            text-align: center;
-        }
-        
-        .risk-level {
-            padding: 5px 10px;
-            border-radius: 15px;
-            color: white;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-        
-        .risk-low { background: #4caf50; }
-        .risk-medium { background: #ff9800; }
-        .risk-high { background: #f44336; }
-        
-        .conclusion {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            margin-top: 50px;
-        }
-        
-        .conclusion h2 {
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-        
-        .conclusion p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        .cta {
-            background: #ffa726;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-top: 20px;
-            display: inline-block;
-            box-shadow: 0 4px 12px rgba(255,167,38,0.3);
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                margin: 0;
-                box-shadow: none;
-            }
-            
-            .header, .content {
-                padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 1.8em;
-            }
-            
-            .proposal-info {
-                grid-template-columns: 1fr;
-            }
-            
-            .cost-breakdown {
-                grid-template-columns: 1fr;
-            }
-            
-            .value-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>🏢 Informatics Consultancy Firm Sierra Leone (ICF-SL)</h1>
-            <h2>Technical Proposal: Data Collection for School-Based Distribution of ITNs in Sierra Leone</h2>
-            
-            <div class="proposal-info">
-                <div>
-                    <strong>RFP No.</strong>
-                    SL-0002
-                </div>
-            
-            <!-- Risk Management -->
-            <div class="section">
-                <h2 class="section-title">Risk Management Strategy</h2>
-                
-                <table class="risk-table">
-                    <thead>
-                        <tr>
-                            <th>Risk</th>
-                            <th>Probability</th>
-                            <th>Impact</th>
-                            <th>Mitigation Strategy</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Internet connectivity issues</td>
-                            <td><span class="risk-level risk-medium">Medium</span></td>
-                            <td><span class="risk-level risk-high">High</span></td>
-                            <td>Offline-first app design with background sync</td>
-                        </tr>
-                        <tr>
-                            <td>Device hardware failures</td>
-                            <td><span class="risk-level risk-low">Low</span></td>
-                            <td><span class="risk-level risk-medium">Medium</span></td>
-                            <td>Backup device pool and rapid replacement protocol</td>
-                        </tr>
-                        <tr>
-                            <td>User training gaps</td>
-                            <td><span class="risk-level risk-medium">Medium</span></td>
-                            <td><span class="risk-level risk-medium">Medium</span></td>
-                            <td>Comprehensive training materials and 24/7 support</td>
-                        </tr>
-                        <tr>
-                            <td>Data security concerns</td>
-                            <td><span class="risk-level risk-low">Low</span></td>
-                            <td><span class="risk-level risk-high">High</span></td>
-                            <td>Enterprise-grade encryption and secure cloud hosting</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- Quality Assurance -->
-            <div class="section">
-                <h2 class="section-title">Quality Assurance Framework</h2>
-                
-                <div class="subsection">
-                    <h3>Testing Protocols</h3>
-                    <div class="platform-card">
-                        <ul class="feature-list">
-                            <li><strong>Unit Testing:</strong> Individual component functionality verification</li>
-                            <li><strong>Integration Testing:</strong> End-to-end system workflow validation</li>
-                            <li><strong>User Acceptance Testing:</strong> Field testing with actual users</li>
-                            <li><strong>Performance Testing:</strong> Load testing with expected user volumes</li>
-                            <li><strong>Security Testing:</strong> Vulnerability assessment and penetration testing</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="subsection">
-                    <h3>Monitoring and Evaluation</h3>
-                    <div class="platform-card">
-                        <ul class="feature-list">
-                            <li><strong>Real-time Dashboards:</strong> Live system performance monitoring</li>
-                            <li><strong>Data Quality Checks:</strong> Automated validation and error reporting</li>
-                            <li><strong>User Feedback Systems:</strong> Continuous improvement mechanisms</li>
-                            <li><strong>Performance Metrics:</strong> Key indicators tracking and reporting</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Payment Schedule -->
-            <div class="section">
-                <h2 class="section-title">Payment Schedule</h2>
-                
-                <table class="cost-table">
-                    <thead>
-                        <tr>
-                            <th>Deliverable Category</th>
-                            <th>Percentage</th>
-                            <th>Amount (USD)</th>
-                            <th>Submission Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>App Development Plan</td>
-                            <td>30%</td>
-                            <td>$6,960.76</td>
-                            <td>June 9, 2025</td>
-                        </tr>
-                        <tr>
-                            <td>Complete System Development</td>
-                            <td>50%</td>
-                            <td>$11,601.26</td>
-                            <td>June 11, 2025</td>
-                        </tr>
-                        <tr>
-                            <td>Post-Campaign Analysis</td>
-                            <td>20%</td>
-                            <td>$4,640.50</td>
-                            <td>July 14, 2025</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- Communication Plan -->
-            <div class="section">
-                <h2 class="section-title">Communication and Collaboration Plan</h2>
-                
-                <div class="subsection">
-                    <h3>Regular Communication Schedule</h3>
-                    <div class="platform-card">
-                        <ul class="feature-list">
-                            <li><strong>Daily Progress Updates:</strong> Every successful submission and Dashboard update after every 24 hours</li>
-                            <li><strong>Daily Check-ins:</strong> During implementation period (June 30 - July 4)</li>
-                            <li><strong>Emergency Contact:</strong> 24/7 technical support hotline during distribution period</li>
-                            <li><strong>Milestone Reviews:</strong> Formal review meetings at each deliverable checkpoint</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="subsection">
-                    <h3>Collaboration Framework</h3>
-                    
-                    <div class="platform-card">
-                        <h4>🔧 Development Phase Collaboration</h4>
-                        <ul class="feature-list">
-                            <li>Joint design sessions with PMI Evolve and NMCP teams</li>
-                            <li>Iterative feedback cycles with 48-hour response guarantee</li>
-                            <li>Shared testing environment for real-time feedback</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="platform-card">
-                        <h4>🚀 Implementation Phase Support</h4>
-                        <ul class="feature-list">
-                            <li>On-site technical support during Training of Trainers (June 16)</li>
-                            <li>Embedded support team during distribution period</li>
-                            <li>Real-time monitoring dashboard accessible to all stakeholders</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Data Management Architecture -->
-            <div class="section">
-                <h2 class="section-title">Data Management Architecture</h2>
-                
-                <div class="platform-card">
-                    <h4>🏗️ System Architecture Components</h4>
-                    <ul class="feature-list">
-                        <li><strong>Mobile Platform:</strong> Clappia cloud infrastructure with enterprise security</li>
-                        <li><strong>Dashboard Platform:</strong> Python Streamlit web application hosted on secure cloud server</li>
-                        <li><strong>Database:</strong> PostgreSQL database with automated backups</li>
-                        <li><strong>API Integration:</strong> RESTful APIs connecting Clappia data to Streamlit dashboard</li>
-                        <li><strong>Real-time Analytics:</strong> Python-based data processing with live dashboard updates</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Conclusion -->
-        <div class="conclusion">
-            <h2>🎯 Ready to Deliver Excellence</h2>
-            <p>ICF-SL brings proven expertise in health informatics using Clappia data collection tool and Python-based solutions, deep understanding of Sierra Leone's operational context, and commitment to delivering high-quality, sustainable technology solutions.</p>
-            
-            <p>Our comprehensive approach using Clappia for mobile data collection and Streamlit for real-time analytics ensures successful implementation of the school-based ITN distribution data collection system while building local capacity for future campaigns.</p>
-            
-            <div class="cta">
-                🚀 We are ready to begin immediate implementation upon contract award and look forward to partnering with PMI Evolve and NMCP to achieve the objectives of this critical malaria prevention initiative.
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-                <div>
-                    <strong>Submitted To</strong>
-                    Abt Associates Inc.
-                </div>
-                <div>
-                    <strong>Date</strong>
-                    June 4, 2025
-                </div>
-                <div>
-                    <strong>Closing Date</strong>
-                    June 6, 2025
-                </div>
-            </div>
-        </div>
-        
-        <div class="content">
-            <!-- About Section -->
-            <div class="section">
-                <h2 class="section-title">About ICF-SL</h2>
-                
-                <div class="subsection">
-                    <h3>Our Mission</h3>
-                    <div class="mission-box">
-                        We leverage cutting-edge technology to strengthen health systems and improve health outcomes in Sierra Leone and the broader region. We combine deep local knowledge with international best practices to deliver sustainable, scalable solutions.
-                    </div>
-                </div>
-                
-                <div class="subsection">
-                    <h3>Malaria Prevention Expertise</h3>
-                    <p>ICF-SL brings specialized expertise in malaria prevention programs, having supported the National Malaria Control Programme (NMCP) of Sierra Leone in deploying digital solutions during the 2023 ITN Mass Campaign. Key ICF-SL members supported the school-based ITN distribution pilot in Kono district in 2023. The firm is currently assisting in digitalizing malaria checklists for routine data quality assessments (mRDQAs), malaria onsite coaching and mentorship (MOCM).</p>
-                </div>
-            </div>
-            
-            <!-- Technical Proposal -->
-            <div class="section">
-                <h2 class="section-title">VOLUME I: TECHNICAL PROPOSAL</h2>
-                
-                <div class="subsection">
-                    <h3>Digital Health Systems Team</h3>
-                    <table class="team-table">
-                        <thead>
-                            <tr>
-                                <th>Position</th>
-                                <th>Name</th>
-                                <th>Days</th>
-                                <th>Key Responsibilities</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Digitalization Lead Specialist</strong></td>
-                                <td>Mohamed Sillah Kanu</td>
-                                <td>60</td>
-                                <td>
-                                    • Leads planning and implementation of digital health architecture<br>
-                                    • Develops digital data strategies<br>
-                                    • Supervises development and rollout of tools
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Director of Health Informatics</strong></td>
-                                <td>Dr. Ousman Oumou Diallo</td>
-                                <td>30</td>
-                                <td>
-                                    • Oversees integration of data systems<br>
-                                    • Ensures data governance and compliance<br>
-                                    • Promotes sustainability initiatives
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Field Data Collection Developer</strong></td>
-                                <td>Ishaka Sheriff</td>
-                                <td>30</td>
-                                <td>
-                                    • Develops and maintains digital forms using Clappia<br>
-                                    • Customizes forms based on feedback<br>
-                                    • Ensures offline functionality
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Database & Backend Engineer</strong></td>
-                                <td>Randwulf A.J. Tucker</td>
-                                <td>30</td>
-                                <td>
-                                    • Designs and maintains databases<br>
-                                    • Implements security protocols<br>
-                                    • Manages data synchronization processes
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>Data Visualization Specialist</strong></td>
-                                <td>Morlai Alimamy Kargbo</td>
-                                <td>30</td>
-                                <td>
-                                    • Creates interactive dashboards using Streamlit<br>
-                                    • Automates reporting workflow<br>
-                                    • Designs user-tailored visuals
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><strong>User Support Coordinator</strong></td>
-                                <td>Zainab Kamara</td>
-                                <td>30</td>
-                                <td>
-                                    • Trains users and provides support<br>
-                                    • Develops training guides<br>
-                                    • Tracks and resolves user issues
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="subsection">
-                    <h3>Platform Selection & Technical Approach</h3>
-                    
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <div class="platform-icon">📱</div>
-                            <div>
-                                <h4>Clappia</h4>
-                                <p>Mobile App builder with offline capability, robust data validation, and enterprise-grade security</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <div class="platform-icon">📊</div>
-                            <div>
-                                <h4>Streamlit</h4>
-                                <p>Python-based framework for rapid dashboard development with real-time data visualization capabilities</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="subsection">
-                    <h3>Data Collection Tools</h3>
-                    
-                    <div class="platform-card">
-                        <h4>📦 Logistics Tracking Form</h4>
-                        <ul class="feature-list">
-                            <li>Real-time tracking of ITN stock distribution and delivery status</li>
-                            <li>QR code scanner integration for inventory verification</li>
-                            <li>GPS auto-capture for delivery point validation</li>
-                            <li>Offline data entry with background sync upon connectivity</li>
-                            <li>Automated notifications to stakeholders via Slack, SMS, and WhatsApp</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="platform-card">
-                        <h4>🎓 ITN Distribution Tracking Form</h4>
-                        <ul class="feature-list">
-                            <li>Dynamic form with conditional logic for student demographic capture</li>
-                            <li>QR code scanner integration for rapid data entry</li>
-                            <li>GPS auto-capture for school location verification</li>
-                            <li>Offline functionality with automatic sync when online</li>
-                            <li>Individual distribution records linked to enrollment database</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="platform-card">
-                        <h4>👨‍💼 Supervision and Quality Assurance Form</h4>
-                        <ul class="feature-list">
-                            <li>Supervisor dashboard with check-in/check-out functionality</li>
-                            <li>Digital checklist with photo documentation requirements</li>
-                            <li>Issue reporting workflow with automatic escalation</li>
-                            <li>Real-time communication with central team</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Cost Proposal -->
-            <div class="section">
-                <h2 class="section-title">VOLUME II: COST PROPOSAL</h2>
-                
-                <table class="cost-table">
-                    <thead>
-                        <tr>
-                            <th>Item Description</th>
-                            <th>Qty</th>
-                            <th>Days</th>
-                            <th>Unit Cost (NLe)</th>
-                            <th>Total (NLe)</th>
-                            <th>Total (USD)</th>
-                            <th>%</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Digital Devices</td>
-                            <td>462</td>
-                            <td>1</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>$0.00</td>
-                            <td>0.0%</td>
-                        </tr>
-                        <tr>
-                            <td>SIM Card Purchase</td>
-                            <td>462</td>
-                            <td>1</td>
-                            <td>20.00</td>
-                            <td>9,240.00</td>
-                            <td>$420.55</td>
-                            <td>1.8%</td>
-                        </tr>
-                        <tr>
-                            <td>Mobile Data</td>
-                            <td>462</td>
-                            <td>3</td>
-                            <td>100.00</td>
-                            <td>46,200.00</td>
-                            <td>$2,102.70</td>
-                            <td>27.2%</td>
-                        </tr>
-                        <tr>
-                            <td>Technical Assistance</td>
-                            <td>1</td>
-                            <td>60</td>
-                            <td>5,285.71</td>
-                            <td>317,142.60</td>
-                            <td>$14,434.60</td>
-                            <td>62.2%</td>
-                        </tr>
-                        <tr>
-                            <td>DSA to ICF Officers</td>
-                            <td>4</td>
-                            <td>16</td>
-                            <td>700.00</td>
-                            <td>44,800.00</td>
-                            <td>$2,039.05</td>
-                            <td>8.8%</td>
-                        </tr>
-                        <tr class="total-row">
-                            <td><strong>TOTAL DIGITALIZATION</strong></td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td><strong>509,782.60</strong></td>
-                            <td><strong>$23,202.52</strong></td>
-                            <td><strong>100.0%</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <div class="cost-breakdown">
-                    <div class="cost-item">
-                        <div class="cost-amount">$14,434.60</div>
-                        <div class="cost-percentage">62.2%</div>
-                        <h4>Technical Assistance</h4>
-                        <p>Complete digitalization software development including cloud-based database, mobile applications, training platforms, and analytics dashboards.</p>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <div class="cost-amount">$2,102.70</div>
-                        <div class="cost-percentage">27.2%</div>
-                        <h4>Mobile Data & Communications</h4>
-                        <p>3-month data plan for all 462 devices including configuration and setup.</p>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <div class="cost-amount">$2,039.05</div>
-                        <div class="cost-percentage">8.8%</div>
-                        <h4>Daily Subsistence Allowance</h4>
-                        <p>2 ICT4D Officers per district × 2 districts × 16 days field work</p>
-                    </div>
-                    
-                    <div class="cost-item">
-                        <div class="cost-amount">$420.55</div>
-                        <div class="cost-percentage">1.8%</div>
-                        <h4>SIM Card Purchase</h4>
-                        <p>Individual SIM cards for each digital device to ensure connectivity.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Value Proposition -->
-            <div class="value-proposition">
-                <h3>💡 ICF-SL Value Proposition</h3>
-                <div class="value-grid">
-                    <div class="value-item">Proven Track Record: 10+ health technology projects completed</div>
-                    <div class="value-item">Malaria Expertise: Current support to NMCP digitalization initiatives</div>
-                    <div class="value-item">Local Knowledge: Deep understanding of Sierra Leone context</div>
-                    <div class="value-item">Technical Excellence: Expertise in Clappia, Streamlit, and health informatics</div>
-                    <div class="value-item">Cost Efficiency: Delivered 62.9% cost savings vs. original budget</div>
-                    <div class="value-item">24/7 Support: Comprehensive technical support throughout implementation</div>
-                </div>
-            </div>
-            
-            <!-- Timeline -->
-            <div class="section">
-                <h2 class="section-title">Project Timeline & Implementation Plan</h2>
-                
-                <table class="timeline-table">
-                    <thead>
-                        <tr>
-                            <th>Phase</th>
-                            <th>Activity</th>
-                            <th>Duration</th>
-                            <th>Start Date</th>
-                            <th>End Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="phase-badge">Phase 1</span></td>
-                            <td>Requirements gathering and system design</td>
-                            <td>3 days</td>
-                            <td>June 7, 2025</td>
-                            <td>June 9, 2025</td>
-                        </tr>
-                        <tr>
-                            <td><span class="phase-badge">Phase 2</span></td>
-                            <td>Core application development (Clappia)</td>
-                            <td>5 days</td>
-                            <td>June 10, 2025</td>
-                            <td>June 14, 2025</td>
-                        </tr>
-                        <tr>
-                            <td><span class="phase-badge">Phase 3</span></td>
-                            <td>Dashboard development (Streamlit)</td>
-                            <td>3 days</td>
-                            <td>June 12, 2025</td>
-                            <td>June 14, 2025</td>
-                        </tr>
-                        <tr>
-                            <td><span class="phase-badge">Phase 4</span></td>
-                            <td>Training of Trainers (ToT)</td>
-                            <td>1 day</td>
-                            <td>June 16, 2025</td>
-                            <td>June 16, 2025</td>
-                        </tr>
-                        <tr>
-                            <td><span class="phase-badge">Phase 5</span></td>
-                            <td>Live deployment and monitoring</td>
-                            <td>4 days</td>
-                            <td>July 1, 2025</td>
-                            <td>July 4, 2025</td>
-                        </tr>
-                        <tr>
-                            <td><span class="phase-badge">Phase 6</span></td>
-                            <td>Post-campaign analysis and reporting</td>
-                            <td>10 days</td>
-                            <td>July 5, 2025</td>
-                            <td>July 14, 2025</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+# Informatics Consultancy Firm Sierra Leone (ICF-SL)
+## Technical Proposal: Data Collection for School-Based Distribution of ITNs in Sierra Leone
+
+---
+
+**RFP No.:** SL-0002  
+**Submitted To:** Abt Associates Inc.  
+**Date:** June 4, 2025  
+**Closing Date:** June 6, 2025
+
+---
+
+## 🏢 About Informatics Consultancy Firm-Sierra Leone (ICF-SL)
+
+### Our Mission
+We leverage cutting-edge technology to strengthen health systems and improve health outcomes in Sierra Leone and the broader region. We combine deep local knowledge with international best practices to deliver sustainable, scalable solutions.
+
+### Malaria Prevention Expertise
+ICF-SL brings specialized expertise in malaria prevention programs, having supported the National Malaria Control Programme (NMCP) of Sierra Leone in deploying digital solutions during the 2023 ITN Mass Campaign. Key ICF-SL members supported the school-based ITN distribution pilot in Kono district in 2023. The firm is currently assisting in digitalizing malaria checklists for routine data quality assessments (mRDQAs), malaria onsite coaching and mentorship (MOCM).
+
+---
+
+# VOLUME I: TECHNICAL PROPOSAL
+
+## Key Personnel and Technical Points of Contact
+
+### Management Structure
+ICF-SL will implement a matrix management structure with clear lines of authority and communication.
+
+### Digital Health Systems Team - Roles and Responsibilities
+
+| **Position** | **Name** | **Days** | **Key Responsibilities** |
+|--------------|----------|----------|--------------------------|
+| **Digitalization Lead Specialist** | Mohamed Sillah Kanu | 60 | • Leads planning and implementation of digital health architecture<br>• Develops digital data strategies<br>• Supervises development and rollout of tools |
+| **Director of Health Informatics** | Dr. Ousman Oumou Diallo | 30 | • Oversees integration of data systems<br>• Ensures data governance and compliance<br>• Promotes sustainability initiatives |
+| **Field Data Collection Developer** | Ishaka Sheriff | 30 | • Develops and maintains digital forms using Clappia<br>• Customizes forms based on feedback<br>• Ensures offline functionality |
+| **Database & Backend Engineer** | Randwulf A.J. Tucker | 30 | • Designs and maintains databases<br>• Implements security protocols<br>• Manages data synchronization processes |
+| **Data Visualization Specialist** | Morlai Alimamy Kargbo | 30 | • Creates interactive dashboards using Streamlit<br>• Automates reporting workflow<br>• Designs user-tailored visuals |
+| **User Support Coordinator** | Zainab Kamara | 30 | • Trains users and provides support<br>• Develops training guides<br>• Tracks and resolves user issues |
+
+---
+
+## Proposed Methods and Data Management
+
+### Technical Approach
+A comprehensive mobile data collection system will be used (**Clappia**) as the primary platform, supplemented by custom dashboard development using **Streamlit** for real-time analytics and visualization.
+
+### Platform Selection Rationale
+
+**🔹 Clappia:** Mobile App builder with offline capability, robust data validation, and enterprise-grade security
+
+**🔹 Streamlit:** Python-based framework for rapid dashboard development with real-time data visualization capabilities
+
+### Data Collection Tools Development
+
+#### 📱 Logistics Tracking Form (Clappia App)
+• Real-time tracking of ITN stock distribution and delivery status  
+• QR code scanner integration for inventory verification  
+• GPS auto-capture for delivery point validation  
+• Offline data entry with background sync upon connectivity  
+• Automated notifications to stakeholders via Slack, SMS, and WhatsApp  
+
+#### 📱 ITN Distribution Tracking Form (Clappia App)
+• Dynamic form with conditional logic for student demographic capture  
+• QR code scanner integration for rapid data entry  
+• GPS auto-capture for school location verification  
+• Offline functionality with automatic sync when online  
+• Individual distribution records linked to enrollment database  
+
+#### 📱 Supervision and Quality Assurance Form (Clappia App)
+• Supervisor dashboard with check-in/check-out functionality  
+• Digital checklist with photo documentation requirements  
+• Issue reporting workflow with automatic escalation  
+• Real-time communication with central team  
+
+### Data Management Architecture
+• **Mobile Platform:** Clappia cloud infrastructure with enterprise security  
+• **Dashboard Platform:** Python Streamlit web application hosted on secure cloud server  
+• **Database:** PostgreSQL database with automated backups  
+• **API Integration:** RESTful APIs connecting Clappia data to Streamlit dashboard  
+• **Real-time Analytics:** Python-based data processing with live dashboard updates  
+
+---
+
+## Communication and Collaboration Plan
+
+### Regular Communication Schedule
+• **Daily Progress Updates:** Every successful submission and Dashboard update after every 24 hours  
+• **Daily Check-ins:** During implementation period (June 30 - July 4)  
+• **Emergency Contact:** 24/7 technical support hotline during distribution period  
+• **Milestone Reviews:** Formal review meetings at each deliverable checkpoint  
+
+### Collaboration Framework
+
+#### Development Phase Collaboration
+• Joint design sessions with PMI Evolve and NMCP teams  
+• Iterative feedback cycles with 48-hour response guarantee  
+• Shared testing environment for real-time feedback  
+
+#### Implementation Phase Support
+• On-site technical support during Training of Trainers (June 16)  
+• Embedded support team during distribution period  
+• Real-time monitoring dashboard accessible to all stakeholders  
+
+---
+
+# VOLUME II: COST PROPOSAL
+
+## Cost Breakdown
+
+| **Item Description** | **Qty** | **Days** | **Unit Cost (NLe)** | **Total (NLe)** | **Total (USD)** | **%** |
+|---------------------|--------|----------|-------------------|------------------|------------------|-------|
+| **Digital Devices** | 462 | 1 | 0.00 | 0.00 | $0.00 | 0.0% |
+| **SIM Card Purchase** | 462 | 1 | 20.00 | 9,240.00 | $420.55 | 1.8% |
+| **Mobile Data** | 462 | 3 | 100.00 | 46,200.00 | $2,102.70 | 27.2% |
+| **Technical Assistance** | 1 | 60 | 5,285.71 | 317,142.60 | $14,434.60 | 62.2% |
+| **DSA to ICF Officers** | 4 | 16 | 700.00 | 44,800.00 | $2,039.05 | 8.8% |
+| **TOTAL DIGITALIZATION** | - | - | **-** | **509,782.60** | **$23,202.52** | **100.0%** |
+
+## Detailed Cost Analysis
+
+### 💰 Technical Assistance (62.2% - $14,434.60)
+Daily Rate: NLe 5,285.71 × 60 days = NLe 317,142.60  
+Exchange Rate: NLe 317,142.60 ÷ 21.97 = $14,434.60  
+
+**Scope:** Complete digitalization software development including cloud-based database, mobile applications, training platforms, and analytics dashboards.
+
+### 📱 Mobile Data & Communications (27.2% - $6,308.32)
+462 devices × 1 month × NLe 100/month = NLe 46,200  
+Total: NLe 46,200 ÷ 21.97 = $2,102.70  
+
+**Coverage:** 3-month data plan for all 462 devices including configuration and setup.
+
+### 🏨 Daily Subsistence Allowance (8.8% - $2,039.05)
+4 ICF Officers × 16 days × NLe 700/day = NLe 44,800  
+Total: NLe 44,800 ÷ 21.97 = $2,039.05  
+
+**Personnel:** 2 ICT4D Officers per district × 2 districts × 16 days field work
+
+### 📞 SIM Card Purchase (1.8% - $420.55)
+462 SIM cards × NLe 20/card = NLe 9,240  
+Total: NLe 9,240 ÷ 21.97 = $420.55  
+
+**Purpose:** Individual SIM cards for each digital device to ensure connectivity.
+
+---
+
+## 💡 ICF-SL Value Proposition
+
+✅ **Proven Track Record:** 10+ health technology projects completed  
+✅ **Malaria Expertise:** Current support to NMCP digitalization initiatives  
+✅ **Local Knowledge:** Deep understanding of Sierra Leone context  
+✅ **Technical Excellence:** Expertise in Clappia, Streamlit, and health informatics  
+✅ **Cost Efficiency:** Delivered 62.9% cost savings vs. original budget  
+✅ **24/7 Support:** Comprehensive technical support throughout implementation  
+
+---
+
+## Payment Schedule
+
+| **Deliverable Category** | **Percentage** | **Amount (USD)** | **Submission Date** |
+|--------------------------|----------------|------------------|-------------------|
+| App Development Plan | 30% | $6,960.76 | June 9, 2025 |
+| Complete System Development | 50% | $11,601.26 | June 11, 2025 |
+| Post-Campaign Analysis | 20% | $4,640.50 | July 14, 2025 |
+
+---
+
+## Project Timeline & Implementation Plan
+
+| **Phase** | **Activity** | **Duration** | **Start Date** | **End Date** |
+|-----------|--------------|--------------|----------------|--------------|
+| **Phase 1** | Requirements gathering and system design | 3 days | June 7, 2025 | June 9, 2025 |
+| **Phase 2** | Core application development (Clappia) | 5 days | June 10, 2025 | June 14, 2025 |
+| **Phase 3** | Dashboard development (Streamlit) | 3 days | June 12, 2025 | June 14, 2025 |
+| **Phase 4** | Training of Trainers (ToT) | 1 day | June 16, 2025 | June 16, 2025 |
+| **Phase 5** | Live deployment and monitoring | 4 days | July 1, 2025 | July 4, 2025 |
+| **Phase 6** | Post-campaign analysis and reporting | 10 days | July 5, 2025 | July 14, 2025 |
+
+---
+
+## Risk Management Strategy
+
+| **Risk** | **Probability** | **Impact** | **Mitigation Strategy** |
+|----------|----------------|------------|------------------------|
+| Internet connectivity issues | Medium | High | Offline-first app design with background sync |
+| Device hardware failures | Low | Medium | Backup device pool and rapid replacement protocol |
+| User training gaps | Medium | Medium | Comprehensive training materials and 24/7 support |
+| Data security concerns | Low | High | Enterprise-grade encryption and secure cloud hosting |
+
+---
+
+## Quality Assurance Framework
+
+### Testing Protocols
+🔸 **Unit Testing:** Individual component functionality verification  
+🔸 **Integration Testing:** End-to-end system workflow validation  
+🔸 **User Acceptance Testing:** Field testing with actual users  
+🔸 **Performance Testing:** Load testing with expected user volumes  
+🔸 **Security Testing:** Vulnerability assessment and penetration testing  
+
+### Monitoring and Evaluation
+🔸 **Real-time Dashboards:** Live system performance monitoring  
+🔸 **Data Quality Checks:** Automated validation and error reporting  
+🔸 **User Feedback Systems:** Continuous improvement mechanisms  
+🔸 **Performance Metrics:** Key indicators tracking and reporting  
+
+---
+
+# Conclusion
+
+ICF-SL brings proven expertise in health informatics using Clappia data collection tool and Python-based solutions, deep understanding of Sierra Leone's operational context, and commitment to delivering high-quality, sustainable technology solutions.
+
+Our comprehensive approach using Clappia for mobile data collection and Streamlit for real-time analytics ensures successful implementation of the school-based ITN distribution data collection system while building local capacity for future campaigns.
+
+**We are ready to begin immediate implementation upon contract award and look forward to partnering with PMI Evolve and NMCP to achieve the objectives of this critical malaria prevention initiative.**
